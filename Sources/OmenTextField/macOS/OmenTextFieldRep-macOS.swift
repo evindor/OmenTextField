@@ -12,6 +12,7 @@ import SwiftUI
         @Binding var text: String
         var isFocused: Binding<Bool>?
         @Binding var height: CGFloat
+        var maxLines: Int?
         var onCommit: (() -> Void)?
         var onTab: (() -> Void)?
         var onBackTab: (() -> Void)?
@@ -24,6 +25,9 @@ import SwiftUI
             view.textContainerInset = .zero
             view.textContainer?.lineFragmentPadding = 0
             view.string = text
+            if let maxLines = maxLines {
+              view.textContainer?.maximumNumberOfLines = maxLines
+            }
             DispatchQueue.main.async {
                 height = view.textHeight()
             }

@@ -16,6 +16,7 @@ public struct OmenTextField: View {
     var onCommit: (() -> Void)?
     var onTab: (() -> Void)?
     var onBackTab: (() -> Void)?
+    var maxLines: Int? = nil
 
     /// Creates a multiline text field with a text label.
     ///
@@ -32,6 +33,7 @@ public struct OmenTextField: View {
         text: Binding<String>,
         isFocused: Binding<Bool>? = nil,
         returnKeyType: ReturnKeyType = .default,
+        maxLines: Int? = nil,
         onTab: (() -> Void)? = nil,
         onBackTab: (() -> Void)? = nil,
         onCommit: (() -> Void)? = nil
@@ -39,6 +41,7 @@ public struct OmenTextField: View {
         self.title = String(title)
         _text = text
         self.isFocused = isFocused
+        self.maxLines = maxLines
         self.returnKeyType = returnKeyType
         self.onCommit = onCommit
         self.onTab = onTab
@@ -66,6 +69,7 @@ public struct OmenTextField: View {
                     text: $text,
                     isFocused: isFocused,
                     height: $height,
+                    maxLines: maxLines,
                     onCommit: onCommit,
                     onTab: onTab,
                     onBackTab: onBackTab
